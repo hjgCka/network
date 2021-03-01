@@ -30,7 +30,7 @@ public class BioClient1 {
             try {
                 String line = null;
                 Scanner scanner = new Scanner(System.in);
-                while(!"exit".equals(line=scanner.nextLine())) {
+                while(!"done".equals(line=scanner.nextLine())) {
                     //发送到服务端
                     System.out.println("send to server");
                     printWriter.println(line);
