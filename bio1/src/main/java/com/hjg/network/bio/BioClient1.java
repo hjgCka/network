@@ -30,14 +30,15 @@ public class BioClient1 {
             try {
                 String line = null;
                 Scanner scanner = new Scanner(System.in);
-                while(!"done".equals(line=scanner.nextLine())) {
+                while(!"exit".equals(line=scanner.nextLine())) {
                     //发送到服务端
                     System.out.println("send to server");
                     printWriter.println(line);
                 }
                 System.out.println("client exit");
 
-                socket.close();
+                //让receiver进行断开操作
+                //socket.close();
             } catch (Exception e) {
                 logger.error("客户端发送线程遇到异常", e);
             }

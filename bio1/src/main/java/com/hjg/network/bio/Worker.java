@@ -29,7 +29,7 @@ public class Worker implements Runnable {
             BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
             String line = null;
-            while(!"done".equals(line=br.readLine())) {
+            while(!"exit".equals(line=br.readLine())) {
                 printWriter.println("processing");
 
                 String hostAddress = socket.getInetAddress().getHostAddress();
