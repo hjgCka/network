@@ -11,6 +11,7 @@
     <modules>
         <module>demo1</module>
         <module>bio1</module>
+        <module>nio1</module>
     </modules>
 
     <properties>
