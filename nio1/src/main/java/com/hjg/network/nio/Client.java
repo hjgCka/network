@@ -31,6 +31,12 @@ public class Client {
                 BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
                 try {
                     String line = br.readLine();
+                    if(line.equalsIgnoreCase("exit")) {
+                        socketChannel.close();
+                        logger.info("断开链接");
+                        break;
+                    }
+
                     byte[] bytes = line.getBytes(StandardCharsets.UTF_8);
                     writeBuffer.put(bytes);
 
@@ -50,6 +56,10 @@ public class Client {
         new Thread(() -> {
             while(true) {
                 try {
+                    if(!socketChannel.isConnected()) {
+                        break;
+                    }
+
                     int count = socketChannel.read(readBuffer);
                     logger.info("客户端读取到了{}字节", count);
 

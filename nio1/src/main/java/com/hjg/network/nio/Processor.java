@@ -91,6 +91,11 @@ public class Processor implements Runnable {
                     //将数据从channel读取到buffer
                     ByteBuffer readByteBuffer = socket.getReadByteBuffer();
                     int readByte = socketChannel.read(readByteBuffer);
+                    if(readByte == -1) {
+                        selectionKey.cancel();
+                        socketChannel.close();
+                        continue;
+                    }
                     if(readByte == 0) {
                         continue;
                     }
