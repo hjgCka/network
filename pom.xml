@@ -9,7 +9,7 @@
     <packaging>pom</packaging>
     <version>1.0.0-SNAPSHOT</version>
     <modules>
-        <module>demo1</module>
+        <module>nia-ch2</module>
         <module>bio1</module>
         <module>nio1</module>
     </modules>
