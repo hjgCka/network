@@ -60,7 +60,7 @@ public class EchoServer {
 
             //绑定服务器，默认为异步，这里使用同步等待绑定完成
             ChannelFuture channelFuture = serverBootstrap.bind().sync();
-            //得到Channel的CloseFuture，并阻塞线程直到完成。等待服务器Channel的关闭
+            //得到ServerChannel，并同步等待ServerChannel的关闭通知，用于阻塞main线程，使程序保持运行。
             channelFuture.channel().closeFuture().sync();
         } finally {
             //关闭EventLoopGroup，释放所有资源
