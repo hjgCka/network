@@ -32,6 +32,8 @@ public class ClientInboundHandler extends SimpleChannelInboundHandler<ByteBuf> {
      */
     @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, ByteBuf byteBuf) throws Exception {
+        //已经处理完成了这个消息，
+        // 该方法返回时SimpleChannelInboundHandler会释放指向保存该消息的ByteBuf的内存引用
         logger.info("client received: {}", byteBuf.toString(CharsetUtil.UTF_8));
     }
 

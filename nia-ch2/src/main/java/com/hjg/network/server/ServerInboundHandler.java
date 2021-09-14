@@ -35,7 +35,8 @@ public class ServerInboundHandler extends ChannelInboundHandlerAdapter {
         String received = in.toString(CharsetUtil.UTF_8);
         logger.info("server received {}", received);
 
-        //将受到的消息写入发送者，并且不清空出境消息
+        //将收到的消息发送出去，由于write操作是异步的，channelRead()返回时write()操作可能还未完成
+        //所以ChannelInboundHandlerAdapter，不会在这个时间点上释放消息
         ctx.write(in);
     }
 
@@ -46,7 +47,7 @@ public class ServerInboundHandler extends ChannelInboundHandlerAdapter {
      */
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
-        //将待定的消息发送到远程对等点，并关闭channel
+        //将待定的消息发送到远程对等点，并为Channel添加一个监听器，通知关闭Channel时该做什么
         ctx.writeAndFlush(Unpooled.EMPTY_BUFFER).addListener(ChannelFutureListener.CLOSE);
     }
 
