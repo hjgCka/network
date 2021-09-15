@@ -47,7 +47,8 @@ public class ServerInboundHandler extends ChannelInboundHandlerAdapter {
      */
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
-        //将待定的消息发送到远程对等点，并为Channel添加一个监听器，通知关闭Channel时该做什么
+        //将待定的消息发送到远程对等点，
+        //并为Channel添加一个监听器，在write完成后，关闭channel
         ctx.writeAndFlush(Unpooled.EMPTY_BUFFER).addListener(ChannelFutureListener.CLOSE);
     }
 
