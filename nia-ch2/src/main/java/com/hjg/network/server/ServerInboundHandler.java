@@ -50,9 +50,10 @@ public class ServerInboundHandler extends ChannelInboundHandlerAdapter {
      */
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
-        //将待定的消息发送到远程对等点，
+        //这里写的是一个‘空’的ByteBuf，实际没有内容。应该是为了加上flush操作，并添加监听器。
         //并为Channel添加一个监听器，在write完成后，关闭channel
-        ctx.writeAndFlush(Unpooled.EMPTY_BUFFER).addListener(ChannelFutureListener.CLOSE);
+        ctx.writeAndFlush(Unpooled.EMPTY_BUFFER)
+                .addListener(ChannelFutureListener.CLOSE);
     }
 
     /**

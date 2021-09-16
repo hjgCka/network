@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+    <contextName>Logback-Demo</contextName>
+
+    <property name="LOG_FILE_PATH" value="c:/logs" />
+
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <!--这个文件会出现在执行java命令所在的目录-->
+        <file>${LOG_FILE_PATH}/myApp.log</file>
+
+        <encoder>
+            <!--$file指源文件名称，%line指源文件中所在行-->
+            <pattern>%date %-5level [%thread] %logger{10} [%file:%line] %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- encoders are assigned the type
+             ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--com.hjg.logback这个包下，只能输出info或更高层级的日志。-->
+    <logger name = "com.hjg.logback" level = "info" />
+
+    <root level="info">
+        <appender-ref ref="STDOUT" />
+        <!--<appender-ref ref="FILE" />-->
+    </root>
+</configuration>

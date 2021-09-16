@@ -12,6 +12,7 @@
         <module>nia-ch2</module>
         <module>bio1</module>
         <module>nio1</module>
+        <module>nia-ch6</module>
     </modules>
 
     <properties>
