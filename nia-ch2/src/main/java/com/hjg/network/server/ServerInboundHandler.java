@@ -32,8 +32,11 @@ public class ServerInboundHandler extends ChannelInboundHandlerAdapter {
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         ByteBuf in = (ByteBuf) msg;
 
+        //默认capacity为1024
+        int capacity = in.capacity();
+
         String received = in.toString(CharsetUtil.UTF_8);
-        logger.info("server received {}", received);
+        logger.info("server received {}, capacity = {}", received, capacity);
 
         //将收到的消息发送出去，由于write操作是异步的，channelRead()返回时write()操作可能还未完成
         //所以ChannelInboundHandlerAdapter，不会在这个时间点上释放消息
