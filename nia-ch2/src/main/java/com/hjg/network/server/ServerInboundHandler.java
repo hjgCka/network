@@ -32,11 +32,13 @@ public class ServerInboundHandler extends ChannelInboundHandlerAdapter {
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         ByteBuf in = (ByteBuf) msg;
 
-        //默认capacity为1024
+        //默认capacity为1024，但是有时候是2048，不明白为何出现这种差异。
+        //但是maxCapacity都是2147483647，即Integer.MAX_VALUE
         int capacity = in.capacity();
+        int maxCapacity = in.maxCapacity();
 
         String received = in.toString(CharsetUtil.UTF_8);
-        logger.info("server received {}, capacity = {}", received, capacity);
+        logger.info("server received : {}, capacity = {}, maxCapacity = {}", received, capacity, maxCapacity);
 
         //将收到的消息发送出去，由于write操作是异步的，channelRead()返回时write()操作可能还未完成
         //所以ChannelInboundHandlerAdapter，不会在这个时间点上释放消息
@@ -52,6 +54,11 @@ public class ServerInboundHandler extends ChannelInboundHandlerAdapter {
     public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
         //这里写的是一个‘空’的ByteBuf，实际没有内容。应该是为了加上flush操作，并添加监听器。
         //并为Channel添加一个监听器，在write完成后，关闭channel
+
+        //Unpooled.EMPTY_BUFFER
+        //ByteBuf byteBuf = Unpooled.buffer();
+        //byteBuf.writeByte('a');
+
         ctx.writeAndFlush(Unpooled.EMPTY_BUFFER)
                 .addListener(ChannelFutureListener.CLOSE);
     }
