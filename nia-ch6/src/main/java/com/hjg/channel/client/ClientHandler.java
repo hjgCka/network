@@ -35,7 +35,6 @@ public class ClientHandler extends SimpleChannelInboundHandler<ByteBuf> {
     protected void channelRead0(ChannelHandlerContext ctx, ByteBuf msg) throws Exception {
         System.out.println("received: " + msg.toString(CharsetUtil.UTF_8));
 
-        ctx.writeAndFlush(Unpooled.EMPTY_BUFFER)
-                .addListener(ChannelFutureListener.CLOSE);
+        ctx.close();
     }
 }
