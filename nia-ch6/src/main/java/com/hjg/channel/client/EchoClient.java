@@ -39,6 +39,7 @@ public class EchoClient {
                     });
 
             ChannelFuture future = bootstrap.connect().sync();
+            //channel关闭时，会通知这个Future。然后这一行就不再阻塞能够放行。
             future.channel().closeFuture().sync();
         } finally {
             group.shutdownGracefully();
