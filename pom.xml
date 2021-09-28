@@ -13,6 +13,7 @@
         <module>bio1</module>
         <module>nio1</module>
         <module>nia-ch6</module>
+        <module>nia-ch8</module>
     </modules>
 
     <properties>
