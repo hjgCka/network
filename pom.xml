@@ -15,6 +15,7 @@
         <module>nia-ch6</module>
         <module>nia-ch8</module>
         <module>nia-ch9</module>
+        <module>nia-ch10</module>
     </modules>
 
     <properties>
