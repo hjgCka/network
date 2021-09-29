@@ -7,9 +7,9 @@ import io.netty.util.ByteProcessor;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.Arrays;
-
 /**
+ *
+ * 测试Inbound，这里相当于解码器。
  * @description:
  * @author: hjg
  * @createdOn: 2021/9/28
