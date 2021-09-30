@@ -16,6 +16,9 @@
         <module>nia-ch8</module>
         <module>nia-ch9</module>
         <module>nia-ch10</module>
+        <module>nia-ch11</module>
+        <module>netty-http</module>
+        <module>netty-websocket</module>
     </modules>
 
     <properties>
